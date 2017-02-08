@@ -13,6 +13,9 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 
 /**
  * Created by pyf on 2017/2/8.
@@ -145,6 +148,11 @@ public class SeatTable extends View {
                     if (seatChecker != null && seatChecker.isValidSeat(i, j) && !seatChecker.isSold(i, j)) {
                         if(x>=tempX&&x<=maxTempX&&y>=tempY&&y<=maxTempY){
                             Toast.makeText(getContext(),"当前点击的位置是"+(i+1)+"行"+(j+1)+"列",Toast.LENGTH_SHORT).show();
+                            int id=getID(i,j);
+                            int index=isHave(id);
+                            if(index>=0){
+                                remove(index);
+                            }
                         }
                     }
                 }
@@ -152,6 +160,19 @@ public class SeatTable extends View {
             return super.onSingleTapConfirmed(e);
         }
     });
+
+    private void remove(int index) {
+        selects.remove(index);
+    }
+
+    ArrayList<Integer> selects = new ArrayList<>();
+    private int isHave(Integer seat) {
+        return Collections.binarySearch(selects, seat);
+    }
+
+    private int getID(int row, int column) {
+        return row * this.column + (column + 1);
+    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
