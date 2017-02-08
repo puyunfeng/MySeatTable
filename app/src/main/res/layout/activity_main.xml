@@ -7,8 +7,8 @@
     tools:context="com.example.pyf.myseattable.MainActivity">
     <com.example.pyf.myseattable.SeatTable
         android:id="@+id/mySeatTable"
-        android:layout_width="500dp"
-        android:layout_height="500dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
        >
     </com.example.pyf.myseattable.SeatTable>
 </RelativeLayout>
